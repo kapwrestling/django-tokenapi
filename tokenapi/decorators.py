@@ -19,7 +19,7 @@ def token_required(view_func):
         if user and token:
             user = authenticate(pk=user, token=token)
             if user:
-                login(request, user)
+                #login(request, user)
                 return view_func(request, *args, **kwargs)
         return HttpResponseForbidden()
     return _wrapped_view
