@@ -110,6 +110,22 @@ This is an example of an API compatible view:
         else:
             return JsonError("Only POST is allowed")
 
+
+Here is an example of a class based API compatable view:
+
+class MyView(ResponseMixin,View):
+
+    @method_decorator(token_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MyView, self).dispatch(*args, **kwargs)
+
+    def get(self,request):
+        data = {
+            'test1': 49,
+            'test2': 'awesome',
+        }
+        return JsonResponse(data)
+			
 ### Using a Token
 
 The client can access any API compatible view by sending a request to it,
